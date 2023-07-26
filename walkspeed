@@ -1,0 +1,31 @@
+--walkspeedx100 pass F 
+local player = game.Players.LocalPlayer
+local character = player.Character
+local humanoid = character:WaitForChild("Humanoid")
+
+local originalWalkSpeed = humanoid.WalkSpeed
+local superSpeed = 100 -- Adjust the value to your desired super speed
+
+-- Function to activate super speed
+local function activateSuperSpeed()
+    humanoid.WalkSpeed = superSpeed
+end
+
+-- Function to restore original walk speed
+local function restoreWalkSpeed()
+    humanoid.WalkSpeed = originalWalkSpeed
+end
+
+-- Activate super speed when a key is pressed (change KeyCode to the desired key)
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.F then -- Change 'F' to your desired key
+        activateSuperSpeed()
+    end
+end)
+
+-- Restore original walk speed when the key is released
+game:GetService("UserInputService").InputEnded:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.F then -- Change 'F' to your desired key
+        restoreWalkSpeed()
+    end
+end)
